@@ -37,8 +37,6 @@ func NewGoLevelDB(name string, dir string, opts Options) (*GoLevelDB, error) {
 		OpenFilesCacheCapacity:        32768,
 		CompactionTableSize:           4 * opt.MiB,
 		CompactionTableSizeMultiplier: 2,
-		CompactionTotalSize:           16 * opt.MiB,
-		CompactionTotalSizeMultiplier: 8,
 	}
 	if opts != nil {
 		files := cast.ToInt(opts.Get("maxopenfiles"))
