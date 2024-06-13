@@ -31,15 +31,14 @@ func NewGoLevelDB(name string, dir string, opts Options) (*GoLevelDB, error) {
 		// Use 128 MiB instead of default 8 MiB
 		BlockCacheCapacity: 128 * opt.MiB,
 		// Use 64 MiB instead of default 4 MiB
-		WriteBuffer:            64 * opt.MiB,
-		DisableBufferPool:      false,
-		DisableSeeksCompaction: true,
-		OpenFilesCacheCapacity: 32768,
-		// 8 MiB instead of 2 MiB
-		CompactionTableSize: 8 * opt.MiB,
-		// 1.5 instead of 1
-		CompactionTableSizeMultiplier: 1.5,
-		CompactionTotalSize:           40 * opt.MiB,
+		WriteBuffer:                   64 * opt.MiB,
+		DisableBufferPool:             false,
+		DisableSeeksCompaction:        true,
+		OpenFilesCacheCapacity:        32768,
+		CompactionTableSize:           4 * opt.MiB,
+		CompactionTableSizeMultiplier: 2,
+		CompactionTotalSize:           16 * opt.MiB,
+		CompactionTotalSizeMultiplier: 8,
 	}
 	if opts != nil {
 		files := cast.ToInt(opts.Get("maxopenfiles"))
