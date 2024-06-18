@@ -27,14 +27,10 @@ var _ DB = (*GoLevelDB)(nil)
 
 func NewGoLevelDB(name string, dir string, opts Options) (*GoLevelDB, error) {
 	defaultOpts := &opt.Options{
-		Filter: filter.NewBloomFilter(10), // by default, goleveldb doesn't use a bloom filter.
-		// Use 128 MiB instead of default 8 MiB
-		BlockCacheCapacity: 128 * opt.MiB,
-		// Use 64 MiB instead of default 4 MiB
-		WriteBuffer:                   64 * opt.MiB,
-		DisableBufferPool:             false,
+		Filter:                        filter.NewBloomFilter(10), // by default, goleveldb doesn't use a bloom filter.
+		BlockCacheCapacity:            2048 * opt.MiB,            // default 128 MiB
+		WriteBuffer:                   256 * opt.MiB,             // default 4MiB
 		DisableSeeksCompaction:        true,
-		OpenFilesCacheCapacity:        32768,
 		CompactionTableSize:           4 * opt.MiB,
 		CompactionTableSizeMultiplier: 2,
 	}
